@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\VoitureRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VoitureRepository::class)]
@@ -17,14 +16,23 @@ class Voiture
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    #[ORM\Column(length: 255)]
+    private ?string $modele = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $ville = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $transmission = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $kilometrage = null;
 
     #[ORM\Column]
-    private ?float $prixQuotidien = null;
+    private ?float $prixParJour = null;
 
     #[ORM\Column]
-    private ?float $prixMensuel = null;
+    private ?float $prixParMois = null;
 
     #[ORM\Column]
     private ?int $places = null;
@@ -45,43 +53,72 @@ class Voiture
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
-
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getModele(): ?string
     {
-        return $this->description;
+        return $this->modele;
     }
 
-    public function setDescription(string $description): static
+    public function setModele(string $modele): static
     {
-        $this->description = $description;
-
+        $this->modele = $modele;
         return $this;
     }
 
-    public function getPrixQuotidien(): ?float
+    public function getVille(): ?string
     {
-        return $this->prixQuotidien;
+        return $this->ville;
     }
 
-    public function setPrixQuotidien(float $prixQuotidien): static
+    public function setVille(string $ville): static
     {
-        $this->prixQuotidien = $prixQuotidien;
-
+        $this->ville = $ville;
         return $this;
     }
 
-    public function getPrixMensuel(): ?float
+    public function getTransmission(): ?string
     {
-        return $this->prixMensuel;
+        return $this->transmission;
     }
 
-    public function setPrixMensuel(float $prixMensuel): static
+    public function setTransmission(string $transmission): static
     {
-        $this->prixMensuel = $prixMensuel;
+        $this->transmission = $transmission;
+        return $this;
+    }
 
+    public function getKilometrage(): ?string
+    {
+        return $this->kilometrage;
+    }
+
+    public function setKilometrage(string $kilometrage): static
+    {
+        $this->kilometrage = $kilometrage;
+        return $this;
+    }
+
+    public function getPrixParJour(): ?float
+    {
+        return $this->prixParJour;
+    }
+
+    public function setPrixParJour(float $prixParJour): static
+    {
+        $this->prixParJour = $prixParJour;
+        return $this;
+    }
+
+    public function getPrixParMois(): ?float
+    {
+        return $this->prixParMois;
+    }
+
+    public function setPrixParMois(float $prixParMois): static
+    {
+        $this->prixParMois = $prixParMois;
         return $this;
     }
 
@@ -93,7 +130,6 @@ class Voiture
     public function setPlaces(int $places): static
     {
         $this->places = $places;
-
         return $this;
     }
 
@@ -105,7 +141,6 @@ class Voiture
     public function setManuelle(bool $manuelle): static
     {
         $this->manuelle = $manuelle;
-
         return $this;
     }
 }
